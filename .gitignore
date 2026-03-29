@@ -1,0 +1,10 @@
+tamagotchi
+*.dSYM
+.build
+.DS_Store
+.zed
+.build
+.idea
+.vscode
+*.exe
+*.pdb
