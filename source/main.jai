@@ -4,6 +4,8 @@
 #import "Math";
 #import "raylib";
 
+#load "game.jai";
+
 HPIXELS :: 380;
 ASPECT  :: 16.0 / 10.0;
 
@@ -17,19 +19,20 @@ render_target: RenderTexture2D;
 main :: () {
     base_path := path_strip_filename(get_path_of_running_executable());
     data_folder = join(base_path, "assets");
-
     defer free(data_folder);
 
     init_raylib_stuff();
     defer close_raylib_stuff();
 
     while (!WindowShouldClose()) {
+        dt: float = xx GetTime();
+        simulate_game(dt);
         BeginDrawing();
             ClearBackground(RAYWHITE);
+            draw_game(dt);
         EndDrawing();
         reset_temporary_storage();
     }
-
 }
 
 init_raylib_stuff :: () {
